@@ -4,14 +4,17 @@ from django.views.generic import DetailView
 
 from armstrong.core.arm_content.admin import fieldsets
 
+from .forms import ImageUploadForm
 from .models import Image
 from .views import BrowseImages, UploadImage
 
 
 class ImageAdmin(admin.ModelAdmin):
+    form = ImageUploadForm
+
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'image', 'summary'),
+            'fields': ('image', 'title', 'slug', 'summary'),
         }),
 
         fieldsets.TAXONOMY,
