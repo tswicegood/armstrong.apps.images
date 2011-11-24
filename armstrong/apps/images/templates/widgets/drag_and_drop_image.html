@@ -24,3 +24,31 @@
     {{ original }}
 </div>
 </div>
+
+<script>
+django.jQuery(document).ready(function() {
+    var $ = django.jQuery,
+        dropHandler = function(e) {
+            e.preventDefault();
+            var files = e.originalEvent.dataTransfer.files;
+            if (files.length === 0) {
+                return;
+            } else if (files.length > 1) {
+                alert("Can only upload one file at a time");
+                return;
+            }
+            var file = files[0];
+            $("#id_title").val(file.fileName);
+            $("#id_slug").val(file.fileName);
+            $("#id_summary").val("N/A");
+
+        }
+    $('.dropzone').bind("dragenter", function(e) {
+        e.preventDefault();
+    }).bind("dragexit", function(e) {
+        e.preventDefault();
+    }).bind("dragover", function(e) {
+        e.preventDefault();
+    }).bind("drop", dropHandler);
+});
+</script>
