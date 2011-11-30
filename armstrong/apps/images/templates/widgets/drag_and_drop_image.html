@@ -51,7 +51,7 @@ django.jQuery(document).ready(function() {
     $('.dropzone').bind("dragenter", function(e) {
         e.preventDefault();
         $(e.target).addClass("hover");
-    }).bind("dragexit", function(e) {
+    }).bind("dragleave", function(e) {
         e.preventDefault();
         $(e.target).removeClass("hover");
     }).bind("dragover", function(e) {
