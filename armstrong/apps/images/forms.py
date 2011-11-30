@@ -1,14 +1,17 @@
 import datetime
 from django import forms
+from django.conf import settings
 from django.template.loader import render_to_string
 
 from .models import Image
+
 
 class DragAndDropImageField(forms.widgets.ClearableFileInput):
     def render(self, *args, **kwargs):
         original = super(DragAndDropImageField, self).render(*args, **kwargs)
         context = {
-            "original": original
+            "original": original,
+            "STATIC_URL": getattr(settings, "STATIC_URL"),
         }
         return render_to_string("widgets/drag_and_drop_image.html", context)
 
