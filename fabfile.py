@@ -1,5 +1,6 @@
 import os.path
 from armstrong.dev.tasks import *
+from fabric.api import task
 
 
 settings = {
@@ -33,3 +34,8 @@ settings = {
 pip_install_first = True
 main_app = "images"
 tested_apps = (main_app,)
+
+
+@task
+def fake(app):
+    command("migrate", app, "--fake", "0001")

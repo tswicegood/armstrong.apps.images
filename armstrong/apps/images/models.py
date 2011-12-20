@@ -5,3 +5,7 @@ from armstrong.apps.content.models import Content
 
 class Image(Content, ImageMixin, SorlThumbnailMixin):
     pass
+
+
+class Image2(ImageMixin):
+    pass

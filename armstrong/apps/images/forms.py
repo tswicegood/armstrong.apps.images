@@ -4,6 +4,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 from .models import Image
+from .models import Image2
 
 
 class DragAndDropImageField(forms.widgets.ClearableFileInput):
@@ -35,3 +36,25 @@ class ImageUploadForm(forms.ModelForm):
 
     def save(self, *args, **kwargs):
         return super(ImageUploadForm, self).save(*args, **kwargs)
+
+
+class ImageUploadForm2(forms.ModelForm):
+    class Meta:
+        model = Image2
+        widgets = {
+            'image': DragAndDropImageField(),
+        }
+
+    def is_valid(self, *args, **kwargs):
+        if super(ImageUploadForm, self).is_valid(*args, **kwargs):
+            # Everything is valid, return away
+            return True
+
+        if not self.instance.pk:
+            self.attempt_auto_upload(*args, **kwargs)
+
+        return False
+
+    def save(self, *args, **kwargs):
+        return super(ImageUploadForm, self).save(*args, **kwargs)
+

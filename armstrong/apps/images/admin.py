@@ -5,7 +5,8 @@ from django.views.generic import DetailView
 from armstrong.core.arm_content.admin import fieldsets
 
 from .forms import ImageUploadForm
-from .models import Image
+from .forms import ImageUploadForm2
+from .models import Image, Image2
 from .views import BrowseImages, UploadImage
 
 
@@ -40,4 +41,9 @@ class ImageAdmin(admin.ModelAdmin):
         return browse_urls + urls
 
 
+class Image2Admin(admin.ModelAdmin):
+    form = ImageUploadForm2
+
+
 admin.site.register(Image, ImageAdmin)
+admin.site.register(Image2, Image2Admin)
